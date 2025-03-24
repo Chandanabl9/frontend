@@ -5,10 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="A smart vehicle parking management system." />
-    
+
+    <!-- Preload essential assets for better offline support -->
+    <link rel="preload" href="%PUBLIC_URL%/logo192.png" as="image" />
+    <link rel="preload" href="%PUBLIC_URL%/manifest.json" as="fetch" crossOrigin="anonymous" />
+
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!-- Offline fallback meta tag -->
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
 
     <title>Vehicle Parking App</title>
   </head>
