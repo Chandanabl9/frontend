@@ -26,7 +26,7 @@ function UserForm() {
     e.preventDefault();
     try {
       // 2) Use the imported API_URL here
-      const response = await axios.post(`${API_URL}/api/user, formData`);
+      const response = await axios.post(`${API_URL}/api/user`, formData);
       alert(response.data.message);
       navigate("/search");
     } catch (error) {
