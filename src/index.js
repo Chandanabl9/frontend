@@ -14,21 +14,8 @@ root.render(
   </React.StrictMode>
 );
 
-// Register Service Worker for PWA functionality with error handling
-serviceWorkerRegistration.register({
-  onUpdate: (registration) => {
-    alert('A new version is available. Refresh the page to update.');
-    if (registration && registration.waiting) {
-      registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-    }
-  },
-  onSuccess: () => {
-    console.log('Service Worker registered successfully. App is ready to work offline.');
-  },
-  onError: (error) => {
-    console.error('Service Worker registration failed:', error);
-  }
-});
+// Register Service Worker for PWA functionality
+serviceWorkerRegistration.register();
 
 // Log performance metrics (optional)
-reportWebVitals(console.log);
+reportWebVitals();
