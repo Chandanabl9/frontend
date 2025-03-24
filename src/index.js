@@ -14,7 +14,7 @@ root.render(
   </React.StrictMode>
 );
 
-// Register Service Worker for PWA functionality
+// Register Service Worker for offline support
 serviceWorkerRegistration.register();
 
 // Log performance metrics (optional)

@@ -1,5 +1,5 @@
-const CACHE_NAME = "my-react-app-cache-v1";
-const OFFLINE_URL = "/offline.html";
+const CACHE_NAME = "vehicle-parking-cache-v2";
+const OFFLINE_URL = "/offline.html"; // Ensure this file exists
 
 const FILES_TO_CACHE = [
   "/",
@@ -12,7 +12,7 @@ const FILES_TO_CACHE = [
   OFFLINE_URL,
 ];
 
-// Install Service Worker & Cache Files
+// Install event: Cache essential files
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -22,7 +22,7 @@ self.addEventListener("install", (event) => {
   self.skipWaiting();
 });
 
-// Activate Service Worker & Remove Old Caches
+// Activate event: Delete old caches
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
@@ -36,17 +36,11 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Fetch Event: Serve Cached Files When Offline
+// Fetch event: Serve from cache first, then network
 self.addEventListener("fetch", (event) => {
-  if (event.request.mode === "navigate") {
-    event.respondWith(
-      fetch(event.request).catch(() => caches.match(OFFLINE_URL))
-    );
-  } else {
-    event.respondWith(
-      caches.match(event.request).then((response) => {
-        return response || fetch(event.request);
-      })
-    );
-  }
+  event.respondWith(
+    caches.match(event.request).then((response) => {
+      return response || fetch(event.request).catch(() => caches.match(OFFLINE_URL));
+    })
+  );
 });
